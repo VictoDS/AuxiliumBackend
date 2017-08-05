@@ -17,11 +17,19 @@ app.get('/android', function(request, response) {
   response.render('pages/index');
 });
 
-app.post('/token-device',function(request, response){
+app.post('/novo-usuario',function(request, response){
 	response.send(request.body.token);
 });
 
-app.post('/biro',function(request, response){
+app.post('/atualiza-usuario',function(request, response){
+	response.send(request.body.token);
+});
+
+app.post('/nova-ocorrencia',function(request, response){
+	response.send(request.body.biro);
+});
+
+app.post('/lista-ocorrencia',function(request, response){
 	response.send(request.body.biro);
 });
 
