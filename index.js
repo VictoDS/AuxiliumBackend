@@ -13,7 +13,7 @@ var con = mysql.createConnection({
 		user: "gustavo",
 		password: "gustavo@tcc",
 		database: "auxilium"
-            });
+    });
 con.connect();
 
 app.use(express.static(__dirname + '/public'));
@@ -43,19 +43,28 @@ app.post('/novo-usuario',function(request, response){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify({status:'OK'}, null, 3));
 	})
-	response.send(request.body.token);
 });
 
 app.post('/atualiza-usuario',function(request, response){
-	response.send(request.body.token);
+	con.query(sql, function(err, resul){
+		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
+		response.send(JSON.stringify({status:'OK'}, null, 3));
+	})
 });
 
 app.post('/nova-ocorrencia',function(request, response){
-	response.send(request.body.biro);
+	con.query(sql, function(err, resul){
+		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
+		response.send(JSON.stringify({status:'OK'}, null, 3));
+	})
 });
 
 app.post('/lista-ocorrencia',function(request, response){
-	response.send(request.body.biro);
+	var idu = request.body.id_usuario;
+	con.query("SELECT * FROM ocorrencia WHERE id_usuario = "+idu+" ORDER BY momento_ocorrencia DESC", function(err, resul){
+		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
+		response.send(JSON.stringify(resul, null, 3));
+	})
 });
 
 app.listen(app.get('port'), function() {
