@@ -7,6 +7,15 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
+var mysql = require('mysql');
+var con = mysql.createConnection({
+		host: "externo.logosystem.com.br",
+		user: "gustavo",
+		password: "gustavo@tcc",
+		database: "auxilium"
+            });
+con.connect();
+
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
