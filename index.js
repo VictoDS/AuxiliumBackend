@@ -19,7 +19,11 @@ app.get('/android', function(request, response) {
 
 app.post('/token-device',function(request, response){
 	response.send(request.body.token);
-})
+});
+
+app.post('/biro',function(request, response){
+	response.send(request.body.biro);
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
