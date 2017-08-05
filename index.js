@@ -42,7 +42,7 @@ app.post('/novo-usuario',function(request, response){
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify({status:'OK'}, null, 3));
-	})
+	});
 });
 
 app.post('/atualiza-usuario',function(request, response){
@@ -57,7 +57,7 @@ app.post('/atualiza-usuario',function(request, response){
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify({status:'OK'}, null, 3));
-	})
+	});
 });
 
 app.post('/nova-ocorrencia',function(request, response){
@@ -76,7 +76,7 @@ app.post('/nova-ocorrencia',function(request, response){
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify({status:'OK'}, null, 3));
-	})
+	});
 });
 
 app.post('/lista-ocorrencia',function(request, response){
@@ -84,15 +84,15 @@ app.post('/lista-ocorrencia',function(request, response){
 	con.query("SELECT * FROM ocorrencia WHERE id_usuario = "+idu+" ORDER BY momento_ocorrencia DESC", function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify(resul, null, 3));
-	})
+	});
 });
 
 app.post('/usuario',function(request, response){
 	var tok = request.token;
-	con.query("SELECT * FROM usuario WHERE id_usuario = '"+cpf+"'", function(err, resul){
+	con.query("SELECT * FROM usuario WHERE token = '"+tok+"'", function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify(resul,null,3))
-	})
+	});
 });
 
 app.listen(app.get('port'), function() {
