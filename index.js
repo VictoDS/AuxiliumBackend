@@ -27,6 +27,22 @@ app.get('/android', function(request, response) {
 });
 
 app.post('/novo-usuario',function(request, response){
+	var nom = request.body.nome;
+	var cpf = request.body.cpf;
+	var dtn = request.body.data_nascimento;
+	var fon = request.body.telefone;
+	var end = request.body.endereco;
+	var bai = request.body.bairro;
+	var cid = request.body.cidade;
+	var uf  = request.body.uf;
+	var tok = request.body.token;
+	
+	var sql = "INSERT INTO usuario (nome ,cpf ,dt_nascimento ,fone ,endereco ,bairro ,cidade ,uf ,status ,token"+
+              ") VALUES ('"+nom+"','"+cpf+"','"+dtn+"','"+fon+"','"+end+"','"+bai+"','"+cid+"','"+uf+"','I','"+tok+"')";
+	con.query(sql, function(err, resul){
+		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
+		response.send(JSON.stringify({status:'OK'}, null, 3));
+	})
 	response.send(request.body.token);
 });
 
