@@ -46,13 +46,13 @@ app.post('/novo-usuario',function(request, response){
 });
 
 app.post('/atualiza-usuario',function(request, response){
-	var fon = request.telefone;
-	var end = request.endereco;
-	var bai = request.bairro;
-	var cid = request.cidade;
-	var uf  = request.uf;
-	var idu = request.id_usuario;
-	var tok = request.token;
+	var fon = request.body.telefone;
+	var end = request.body.endereco;
+	var bai = request.body.bairro;
+	var cid = request.body.cidade;
+	var uf  = request.body.uf;
+	var idu = request.body.id_usuario;
+	var tok = request.body.token;
 	var sql = "UPDATE usuario SET fone = '"+fon+"', endereco = '"+end+"', bairro = '"+bai+"', cidade = '"+cid+"', uf = '"+uf+"', token = '"+tok+"' WHERE id_usuario = "+idu;
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
@@ -61,15 +61,15 @@ app.post('/atualiza-usuario',function(request, response){
 });
 
 app.post('/nova-ocorrencia',function(request, response){
-	var idu = request.id_usuario;
-	var cid = request.cidade;
-	var bai = request.bairro;
-	var log = request.logradouro;
-	var num = request.numero;
-	var lat = request.latitude;
-	var lng = request.longitude;
-	var tip = request.tipo;
-	var des = request.descricao;
+	var idu = request.body.id_usuario;
+	var cid = request.body.cidade;
+	var bai = request.body.bairro;
+	var log = request.body.logradouro;
+	var num = request.body.numero;
+	var lat = request.body.latitude;
+	var lng = request.body.longitude;
+	var tip = request.body.tipo;
+	var des = request.body.descricao;
 	
 	var sql = "INSERT INTO ocorrencia (id_usuario, cidade, bairro, logradouro, numero, lat, lng, tip_ocorrencia, descricao, status) "+
               "VALUES ("+q.idu+",'"+q.cid+"','"+q.bai+"','"+q.log+"',"+q.num+","+q.lat+","+q.lng+",'"+q.tpo+"','"+q.des+"','P')";
@@ -88,7 +88,7 @@ app.post('/lista-ocorrencia',function(request, response){
 });
 
 app.post('/usuario',function(request, response){
-	var tok = request.token;
+	var tok = request.body.token;
 	con.query("SELECT * FROM usuario WHERE token = '"+tok+"'", function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify(resul,null,3))
