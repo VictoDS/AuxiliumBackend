@@ -54,7 +54,7 @@ app.post('/atualiza-usuario',function(request, response){
 	var id  = request.body.id;
 	var tok = request.body.token;
 	
-	var sql = "UPDATE usuario SET fone = '"+fon+"', endereco = '"+end+"', bairro = '"+bai+"', cidade = '"+cid+"', uf = '"+uf+"', token = '"+tok+"' WHERE id = "+idu;
+	var sql = "UPDATE usuario SET fone = '"+fon+"', endereco = '"+end+"', bairro = '"+bai+"', cidade = '"+cid+"', uf = '"+uf+"', token = '"+tok+"' WHERE id = "+id;
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify({status:'OK'}, null, 3));
