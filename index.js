@@ -73,7 +73,7 @@ app.post('/nova-ocorrencia',function(request, response){
 	var des = request.body.descricao;
 	
 	var sql = "INSERT INTO ocorrencia (id_usuario, cidade, bairro, logradouro, numero, lat, lng, tip_ocorrencia, descricao, status) "+
-              "VALUES ("+idu+",'"+cid+"','"+bai+"','"+log+"',"+num+","+lat+","+lng+",'"+tpo+"','"+des+"','P')";
+              "VALUES ("+idu+",'"+cid+"','"+bai+"','"+log+"',"+num+","+lat+","+lng+",'"+tip+"','"+des+"','P')";
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify({status:'OK'}, null, 3));
