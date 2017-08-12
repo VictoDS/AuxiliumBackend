@@ -97,6 +97,11 @@ app.post('/usuario',function(request, response){
 	});
 });
 
+app.post('/teste-param',function(request, response){
+	var tok = request.body.token;
+	response.send(JSON.stringify({token:tok},null,3));
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
