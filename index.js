@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var url = require('url');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -98,10 +97,9 @@ app.post('/usuario',function(request, response){
 	});
 });
 
-app.get('/teste-param',function(request, response){
+app.post('/teste-param',function(request, response){
 	//var tok = request.body.token;
-	var q = url.parse(request.url, true);
-	response.send(JSON.stringify({token:q.token},null,3));
+	response.send(JSON.stringify(request.body,null,3));
 });
 
 app.listen(app.get('port'), function() {
