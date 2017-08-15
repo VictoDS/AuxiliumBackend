@@ -90,14 +90,14 @@ app.post('/lista-ocorrencia',function(request, response){
 
 app.post('/usuario',function(request, response){
 	var tok = request.body.token;
-	var cpf = request.body.cpf;
+	
 	con.query("SELECT * FROM usuario WHERE token = '"+tok+"'", function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify(resul,null,3))
 	});
 });
 
-app.post('/teste-param',function(request, response){
+app.post('/teste',function(request, response){
 	//var tok = request.body.token;
 	response.send(JSON.stringify({status:"OK"},null,3));
 });
