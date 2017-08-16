@@ -99,7 +99,7 @@ app.post('/usuario',function(request, response){
 
 app.post('/teste',function(request, response){
 	//var tok = request.body.token;
-	response.send(JSON.stringify(request,null,3));
+	response.send(JSON.stringify(request.body,null,3));
 });
 
 app.listen(app.get('port'), function() {
