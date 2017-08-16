@@ -99,7 +99,7 @@ app.post('/usuario',function(request, response){
 
 app.post('/teste',function(request, response){
 	var tst = request.body.status;
-	response.send(JSON.stringify("{ ret:"tst+"}",null,3));
+	response.send(JSON.stringify("{ ret:"+tst+"}",null,3));
 });
 
 app.listen(app.get('port'), function() {
