@@ -98,8 +98,8 @@ app.post('/usuario',function(request, response){
 });
 
 app.post('/teste',function(request, response){
-	//var tok = request.body.token;
-	response.send(JSON.stringify(request.body,null,3));
+	var tst = request.body.status;
+	response.send(JSON.stringify("{ ret:"tst+"}",null,3));
 });
 
 app.listen(app.get('port'), function() {
