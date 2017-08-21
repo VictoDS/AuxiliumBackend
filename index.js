@@ -36,12 +36,14 @@ app.post('/novo-usuario',function(request, response){
 	var cid = request.body.cidade;
 	var uf  = request.body.uf;
 	var tok = request.body.token;
+	var doe = request.body.doenca;
+	var dsd = request.body.ds_doenca;
 	
-	var sql = "INSERT INTO usuario (nome ,cpf ,dt_nascimento ,fone ,endereco ,bairro ,cidade ,uf ,status ,token"+
-              ") VALUES ('"+nom+"','"+cpf+"','"+dtn+"','"+fon+"','"+end+"','"+bai+"','"+cid+"','"+uf+"','I','"+tok+"')";
+	var sql = "INSERT INTO usuario (nome ,cpf ,dt_nascimento ,fone ,endereco ,bairro ,cidade ,uf ,status ,token, problema_saude, ds_problema_saude"+
+              ") VALUES ('"+nom+"','"+cpf+"','"+dtn+"','"+fon+"','"+end+"','"+bai+"','"+cid+"','"+uf+"','I','"+tok+"','"+doe+"','"+dsd+"')";
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
-		response.send(JSON.stringify({status:'OK'}, null, 3));
+		response.send(JSON.stringify({status:'OK',descricao:'OK'}, null, 3));
 	});
 });
 
@@ -53,30 +55,30 @@ app.post('/atualiza-usuario',function(request, response){
 	var uf  = request.body.uf;
 	var id  = request.body.id;
 	var tok = request.body.token;
+	var doe = request.body.doenca;
+	var dsd = request.body.ds_doenca;
 	
-	var sql = "UPDATE usuario SET fone = '"+fon+"', endereco = '"+end+"', bairro = '"+bai+"', cidade = '"+cid+"', uf = '"+uf+"', token = '"+tok+"' WHERE id = "+id;
+	var sql = "UPDATE usuario SET fone = '"+fon+"', endereco = '"+end+"', bairro = '"+bai+"', cidade = '"+cid+"', uf = '"+uf+"', token = '"+tok+
+			  "', problema_saude = '"+doe+"', ds_problema_saude = '"+dsd+"' WHERE id = "+id;
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
-		response.send(JSON.stringify({status:'OK'}, null, 3));
+		response.send(JSON.stringify({status:'OK',descricao:'OK'}, null, 3));
 	});
 });
 
 app.post('/nova-ocorrencia',function(request, response){
 	var idu = request.body.id_usuario;
 	var cid = request.body.cidade;
-	var bai = request.body.bairro;
-	var log = request.body.logradouro;
-	var num = request.body.numero;
 	var lat = request.body.latitude;
 	var lng = request.body.longitude;
 	var tip = request.body.tipo;
 	var des = request.body.descricao;
 	
-	var sql = "INSERT INTO ocorrencia (id_usuario, cidade, bairro, logradouro, numero, lat, lng, tip_ocorrencia, descricao, status) "+
-              "VALUES ("+idu+",'"+cid+"','"+bai+"','"+log+"',"+num+","+lat+","+lng+",'"+tip+"','"+des+"','P')";
+	var sql = "INSERT INTO ocorrencia (id_usuario, lat, lng, tip_ocorrencia, descricao, status) "+
+              "VALUES ("+idu+","+lat+","+lng+",'"+tip+"','"+des+"','P')";
 	con.query(sql, function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
-		response.send(JSON.stringify({status:'OK'}, null, 3));
+		response.send(JSON.stringify({status:'OK',descricao:'OK'}, null, 3));
 	});
 });
 
