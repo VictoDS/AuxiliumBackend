@@ -68,7 +68,6 @@ app.post('/atualiza-usuario',function(request, response){
 
 app.post('/nova-ocorrencia',function(request, response){
 	var idu = request.body.id_usuario;
-	var cid = request.body.cidade;
 	var lat = request.body.latitude;
 	var lng = request.body.longitude;
 	var tip = request.body.tipo;
