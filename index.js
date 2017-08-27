@@ -99,6 +99,15 @@ app.post('/usuario',function(request, response){
 	});
 });
 
+app.post('/usuario-cpf',function(request, response){
+	var cpf = request.body.cpf;
+	
+	con.query("SELECT * FROM usuario WHERE cpf = '"+tok+"'", function(err, resul){
+		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
+		response.send(JSON.stringify(resul,null,3))
+	});
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
