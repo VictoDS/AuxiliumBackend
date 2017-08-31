@@ -82,9 +82,9 @@ app.post('/nova-ocorrencia',function(request, response){
 });
 
 app.post('/lista-ocorrencia',function(request, response){
-	var tok = request.body.token;
+	var idu = request.body.id_usuario;
 	
-	con.query("SELECT o.*, date_format(o.momento_ocorrencia,'%d/%m/%Y %H:%i:%S') momento FROM ocorrencia o, usuario u WHERE o.id_usuario = u.id AND u.token =  '"+tok+"' ORDER BY momento_ocorrencia DESC", function(err, resul){
+	con.query("SELECT o . * , DATE_FORMAT( o.momento_ocorrencia,  '%d/%m/%Y %H:%i:%S' ) momento FROM ocorrencia o WHERE o.id_usuario = "+idu+" ORDER BY momento_ocorrencia DESC", function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify(resul, null, 3));
 	});
