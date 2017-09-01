@@ -22,7 +22,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/android', function(request, response) {
+app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
@@ -84,7 +84,7 @@ app.post('/nova-ocorrencia',function(request, response){
 app.post('/lista-ocorrencia',function(request, response){
 	var idu = request.body.id_usuario;
 	
-	con.query("SELECT o . * , DATE_FORMAT( o.momento_ocorrencia,  '%d/%m/%Y %H:%i:%S' ) momento FROM ocorrencia o WHERE o.id_usuario = "+idu+" ORDER BY momento_ocorrencia DESC", function(err, resul){
+	con.query("SELECT o.* , DATE_FORMAT( o.momento_ocorrencia,  '%d/%m/%Y %H:%i:%S' ) momento FROM ocorrencia o WHERE o.id_usuario = "+idu+" ORDER BY momento_ocorrencia DESC", function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify(resul, null, 3));
 	});
@@ -94,15 +94,6 @@ app.post('/usuario',function(request, response){
 	var tok = request.body.token;
 	
 	con.query("SELECT * FROM usuario WHERE token = '"+tok+"'", function(err, resul){
-		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
-		response.send(JSON.stringify(resul,null,3))
-	});
-});
-
-app.post('/usuario-cpf',function(request, response){
-	var cpf = request.body.cpf;
-	
-	con.query("SELECT * FROM usuario WHERE cpf = '"+cpf+"'", function(err, resul){
 		if (err) response.send(JSON.stringify({status:'ERRO',descricao:err}, null, 3));
 		response.send(JSON.stringify(resul,null,3))
 	});
