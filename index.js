@@ -26,6 +26,7 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+//ainda não funciona
 app.post('/novo-usuario',function(request, response){
 	var nom = request.body.nome;
 	var cpf = request.body.cpf;
