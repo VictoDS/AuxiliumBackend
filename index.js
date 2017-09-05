@@ -9,9 +9,9 @@ app.use(bodyParser.urlencoded({extended : true}));
 
 var mysql = require('mysql');
 var con = mysql.createConnection({
-		host: "externo.logosystem.com.br",
-		user: "gustavo",
-		password: "gustavo@tcc",
+		host: "mysql.auxilium.kinghost.net",
+		user: "auxilium",
+		password: "auxilium2017",
 		database: "auxilium"
     });
 con.connect();
@@ -26,7 +26,6 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
-//ainda não funciona
 app.post('/novo-usuario',function(request, response){
 	var nom = request.body.nome;
 	var cpf = request.body.cpf;
