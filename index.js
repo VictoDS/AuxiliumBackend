@@ -9,10 +9,10 @@ app.use(bodyParser.urlencoded({extended : true}));
 
 var mysql = require('mysql');
 var con = mysql.createConnection({
-		host: "mysql.auxilium.kinghost.net",
-		user: "auxilium",
-		password: "auxilium2017",
-		database: "auxilium"
+		host: "d6vscs19jtah8iwb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+		user: "stzkkaylxqwqkw7s",
+		password: "vdge2swb3gojh9kt",
+		database: "qlrywt0oa84b2ydm"
     });
 con.connect();
 
